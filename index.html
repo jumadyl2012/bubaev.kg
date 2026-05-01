@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Жолдош Бубаев мектеби</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap');
+
+    :root {
+      --primary: #4361ee;
+      --bg: #f3f4f6;
+      --text: #1f2937;
+    }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding-bottom: 400px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e1b4b 0%, #4361ee 100%);
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+      border-radius: 0 0 40px 40px;
+      position: relative;
+    }
+
+    .lang-selector {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex; gap: 5px;
+    }
+
+    .lang-selector button {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .lang-selector button.active {
+      background: white;
+      color: var(--primary);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: -25px auto 0;
+      padding: 0 15px;
+    }
+
+    section {
+      background: white;
+      padding: 25px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: #111827;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    h2::before {
+      content: '';
+      width: 5px; height: 20px;
+      background: var(--primary);
+      border-radius: 10px;
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .card {
+      background: #f9fafb;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid #f3f4f6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+    }
+
+    .tag {
+      font-size: 0.65rem;
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-left: 10px;
+      min-width: 75px;
+      text-align: center;
+    }
+
+    /* Colors */
+    .math .tag { background: #fee2e2; color: #dc2626; }
+    .inf .tag { background: #e0e7ff; color: #4338ca; }
+    .phys .tag { background: #fef3c7; color: #d97706; }
+    .chem .tag { background: #dcfce7; color: #16a34a; }
+    .bio .tag { background: #ecfdf5; color: #059669; }
+    .hist .tag { background: #ffedd5; color: #9a3412; }
+    .society .tag { background: #f3e8ff; color: #7e22ce; }
+    .religion .tag { background: #faf5ff; color: #6b21a8; }
+    .geo .tag { background: #fef9c3; color: #854d0e; }
+    .sport .tag { background: #e0f2fe; color: #0369a1; }
+    .student-card .tag { background: #f1f5f9; color: #475569; }
+
+    /* Navigation */
+    .nav-panel {
+      position: fixed;
+      bottom: 10px; left: 50%;
+      transform: translateX(-50%);
+      width: 95%; max-width: 950px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(15px);
+      padding: 12px;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      z-index: 1000;
+      border: 1px solid #e5e7eb;
+    }
+
+    .scroll-row {
+      display: flex; gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: none;
+    }
+    .scroll-row::-webkit-scrollbar { display: none; }
+
+    .filter-btn {
+      border: none;
+      background: #f3f4f6;
+      padding: 8px 15px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+      color: #4b5563;
+      font-size: 0.75rem;
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .author-box {
+      text-align: center;
+      padding: 20px;
+      color: #9ca3af;
+      font-size: 0.8rem;
+    }
+    .author-box b { color: var(--primary); }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="lang-selector">
+      <button onclick="changeLang('ru')" id="lang-ru">RU</button>
+      <button onclick="changeLang('kg')" id="lang-kg" class="active">KG</button>
+    </div>
+    <h1 class="tr" data-kg="Жолдош Бубаев атындагы мектеп" data-ru="Школа имени Жолдоша Бубаева">Жолдош Бубаев атындагы мектеп</h1>
+  </header>
+
+  <main>
+    <!-- МУГАЛИМДЕР -->
+    <section>
+      <h2 class="tr" data-kg="Мугалимдер" data-ru="Учителя">Мугалимдердин тизмеси</h2>
+      <ul class="list">
+        <li class="card teacher-card math"><span>Осмонов Кайратбек</span> <span class="tag">Мат.</span></li>
+        <li class="card teacher-card math"><span>Шакир уулу Муканбет</span> <span class="tag">Мат.</span></li>
+        <li class="card teacher-card inf"><span>Рысмаматов Алтынбек</span> <span class="tag">Инф.</span></li>
+        <li class="card teacher-card phys"><span>Рысмаматов Алтынбек</span> <span class="tag">Физ.</span></li>
+        <li class="card teacher-card chem"><span>Сарытаев Рахат</span> <span class="tag">Хим.</span></li>
+        <li class="card teacher-card bio"><span>Шарабидин уулу Бекташ</span> <span class="tag">Био.</span></li>
+        <li class="card teacher-card hist"><span>Сулайманова Кенжегүл</span> <span class="tag">Тарых</span></li>
+        <li class="card teacher-card religion"><span>Тыныбеков Бекболот</span> <span class="tag">Дин</span></li>
+        <li class="card teacher-card geo"><span>Шарапова Нурайым</span> <span class="tag">Гео.</span></li>
+        <li class="card teacher-card sport"><span>Чалбаев Талантбек</span> <span class="tag">Спорт</span></li>
+      </ul>
+    </section>
+
+    <!-- ОКУУЧУЛАР -->
+    <section>
+      <h2 class="tr" data-kg="Окуучулар" data-ru="Ученики">Окуучулардын тизмеси</h2>
+      <ul class="list" id="student-list">
+        <!-- 7-класс -->
+        <li class="card student-card c-7"><span>Абылкасымов Сармат</span> <span class="tag">7-класс</span></li>
+        <li class="card student-card c-7"><span>Айбеков Адилет</span> <span class="tag">7-класс</span></li>
+        <li class="card student-card c-7"><span>Кошарбеков Байел</span> <span class="tag">7-класс</span></li>
+        <li class="card student-card c-7"><span>Каримбаева Минура</span> <span class="tag">7-класс</span></li>
+        <li class="card student-card c-7"><span>Кочкорбаев Жумадыл</span> <span class="tag">7-класс</span></li>
+        <li class="card student-card c-7"><span>Мурзалиев Тимур</span> <span class="tag">7-класс</span></li>
+        <li class="card student-card c-7"><span>Нурмаматовна Гулина</span> <span class="tag">7-класс</span></li>
+        <li class="card student-card c-7"><span>Сатанов Аскат</span> <span class="tag">7-класс</span></li>
+        <li class="card student-card c-7"><span>Салайдинова Аиста</span> <span class="tag">7-класс</span></li>
+        <li class="card student-card c-7"><span>Эшмуратова Асема</span> <span class="tag">7-класс</span></li>
+        <li class="card student-card c-7"><span>Эсенов Нурмухаммед</span> <span class="tag">7-класс</span></li>
+
+        <!-- Башка класстар -->
+        <li class="card student-card c-1"><span>--</span> <span class="tag">1-класс</span></li>
+        <li class="card student-card c-2"><span>--</span> <span class="tag">2-класс</span></li>
+        <li class="card student-card c-3"><span>--</span> <span class="tag">3-класс</span></li>
+        <li class="card student-card c-4"><span>--</span> <span class="tag">4-класс</span></li>
+        <li class="card student-card c-5"><span>--</span> <span class="tag">5-класс</span></li>
+        <li class="card student-card c-6"><span>--</span> <span class="tag">6-класс</span></li>
+        <li class="card student-card c-8"><span>--</span> <span class="tag">8-класс</span></li>
+        <li class="card student-card c-9"><span>--</span> <span class="tag">9-класс</span></li>
+        <li class="card student-card c-10"><span>--</span> <span class="tag">10-класс</span></li>
+        <li class="card student-card c-11"><span>--</span> <span class="tag">11-класс</span></li>
+      </ul>
+    </section>
+
+    <div class="author-box">
+      <p>Сайтты жасаган: <b>Кочкорбаев Жумадыл</b><br>байланыш: +996 997 57 81 57</p>
+    </div>
+  </main>
+
+  <div class="nav-panel">
+    <!-- Мугалимдер үчүн -->
+    <div class="scroll-row">
+      <button class="filter-btn active" onclick="filterItems('teacher-card', 'all', this)">Баары</button>
+      <button class="filter-btn" onclick="filterItems('teacher-card', 'math', this)">Мат</button>
+      <button class="filter-btn" onclick="filterItems('teacher-card', 'phys', this)">Физ</button>
+      <button class="filter-btn" onclick="filterItems('teacher-card', 'bio', this)">Био</button>
+      <button class="filter-btn" onclick="filterItems('teacher-card', 'hist', this)">Тарых</button>
+      <button class="filter-btn" onclick="filterItems('teacher-card', 'religion', this)">Дин</button>
+      <button class="filter-btn" onclick="filterItems('teacher-card', 'sport', this)">Спорт</button>
+    </div>
+
+    <!-- Класстар үчүн -->
+    <div class="scroll-row">
+      <button class="filter-btn active" onclick="filterItems('student-card', 'all', this)">Класстар</button>
+      <button class="filter-btn" onclick="filterItems('student-card', 'c-1', this)">1</button>
+      <button class="filter-btn" onclick="filterItems('student-card', 'c-2', this)">2</button>
+      <button class="filter-btn" onclick="filterItems('student-card', 'c-3', this)">3</button>
+      <button class="filter-btn" onclick="filterItems('student-card', 'c-4', this)">4</button>
+      <button class="filter-btn" onclick="filterItems('student-card', 'c-5', this)">5</button>
+      <button class="filter-btn" onclick="filterItems('student-card', 'c-6', this)">6</button>
+      <button class="filter-btn" onclick="filterItems('student-card', 'c-7', this)">7</button>
+      <button class="filter-btn" onclick="filterItems('student-card', 'c-8', this)">8</button>
+      <button class="filter-btn" onclick="filterItems('student-card', 'c-9', this)">9</button>
+      <button class="filter-btn" onclick="filterItems('student-card', 'c-10', this)">10</button>
+      <button class="filter-btn" onclick="filterItems('student-card', 'c-11', this)">11</button>
+    </div>
+  </div>
+
+  <script>
+    function changeLang(lang) {
+      document.getElementById('lang-ru').classList.toggle('active', lang === 'ru');
+      document.getElementById('lang-kg').classList.toggle('active', lang === 'kg');
+      document.querySelectorAll('.tr').forEach(el => {
+        el.innerHTML = el.getAttribute('data-' + lang);
+      });
+    }
+
+    function filterItems(targetClass, filterValue, btn) {
+      const btnGroup = btn.parentElement;
+      btnGroup.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const items = document.querySelectorAll('.' + targetClass);
+      items.forEach(item => {
+        if (filterValue === 'all') {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.contains(filterValue) ? item.classList.remove('hidden') : item.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
