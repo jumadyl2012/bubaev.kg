@@ -4,6 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Жолдош Бубаев мектеби</title>
+
+  <!-- PWA үчүн кошулган бөлүм -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1e1b4b">
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('PWA иштеди!'))
+          .catch(err => console.log('Ката кетти!', err));
+      });
+    }
+  </script>
+  <!-- PWA бөлүмүнүн аягы -->
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap');
 
