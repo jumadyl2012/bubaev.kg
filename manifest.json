@@ -1,0 +1,15 @@
+{
+  "name": " №31 Ж.Бубаев мектеби ",
+  "short_name": "Бубаев Мектеби",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f3f4f6",
+  "theme_color": "#1e1b4b",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/167/167707.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
